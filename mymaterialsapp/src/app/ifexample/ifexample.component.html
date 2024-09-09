@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NgIf Directive Example</title>
+</head>
+
+<body>
+    <h1>NgIf Directive</h1>
+    <p>ifexample works!</p>
+     <button (click)="show = !show">
+        {{ show ? 'Hide' : 'Show' }}
+     </button>
+    show = {{ show }}
+    <br>
+    <div *ngIf="show; else elseBlock">Text to show</div>
+
+    <ng-template #elseBlock>The original text is hidden</ng-template>
+    <hr>
+    <h1> *ngFor </h1>
+    <div>
+      <table>
+        <thead>
+            <tr>
+              <th>Title</th>
+              <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books;">
+                <td>{{book.title}}</td>
+                <td>{{book.genre}}</td>
+            </tr>
+        </tbody>
+      </table>
+      <hr>
+        <button (click)="addNumbers($event)">Sum
+        </button>
+    </div>
+   <hr>
+  </body>
+</html>
