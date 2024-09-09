@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>UserEntryForm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <div>
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="user.name"
+      #name="ngModel"
+      required
+      minlength="2"
+    />
+    <div *ngIf="userForm.submitted && name.invalid">
+      <span *ngIf="name.errors?.['required']">
+        Name is required.
+      </span>
+      <span *ngIf="name.errors?.['minlength']">
+        Name must be at least 2 characters long.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="user.email"
+      #email="ngModel"
+      required
+      email
+    />
+    <div *ngIf="userForm.submitted && email.invalid">
+      <span *ngIf="email.errors?.['required']">
+        Email is required.
+      </span>
+      <span *ngIf="email.errors?.['email']">
+        Invalid email address.
+      </span>
+    </div>
+  </div>
+
+  <div>
+    <label for="age">Age:</label>
+    <input
+      type="number"
+      id="age"
+      name="age"
+      [(ngModel)]="user.age"
+      #age="ngModel"
+      required
+      min="1"
+    />
+    <div *ngIf="userForm.submitted && age.invalid">
+      <span *ngIf="age.errors?.['required']">
+        Age is required.
+      </span>
+      <span *ngIf="age.errors?.['min']">
+        Age must be greater than 0.
+      </span>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>
